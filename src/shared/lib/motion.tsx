@@ -1,12 +1,4 @@
-import { motion, useInView } from 'framer-motion';
-import { useRef, type ReactNode } from 'react';
-
-export function useScrollReveal() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
-
-  return { ref, isInView };
-}
+import { motion, type ReactNode } from 'framer-motion';
 
 interface StaggerContainerProps {
   children: ReactNode;

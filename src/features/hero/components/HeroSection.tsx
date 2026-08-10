@@ -8,12 +8,23 @@ import { NAVIGATION, SKILLS } from '../../../shared/lib/constants.ts';
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 py-20">
-      <div className="max-w-6xl w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
+    <section className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full blur-[120px] opacity-20"
+          style={{ background: theme.colors.primary }}
+        />
+        <div
+          className="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] rounded-full blur-[100px] opacity-15"
+          style={{ background: theme.colors.accent }}
+        />
+      </div>
+
+      <div className="max-w-6xl w-full relative z-10">
+        <div className="grid lg:grid-cols-12 gap-10 items-center">
+          <div className="lg:col-span-7 space-y-8">
             <motion.p
-              className="text-sm font-medium tracking-widest uppercase mb-4"
+              className="text-sm font-semibold tracking-[0.2em] uppercase"
               style={{ color: theme.colors.accent }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -25,13 +36,13 @@ export function HeroSection() {
             <AnimatedText
               text="Building digital experiences that matter"
               tag="h1"
-              className="text-5xl lg:text-6xl font-bold leading-tight mb-6"
+              className="text-5xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight"
               style={{ color: theme.colors.text }}
               delay={0.2}
             />
 
             <motion.p
-              className="text-lg leading-relaxed mb-8"
+              className="text-lg leading-relaxed max-w-xl"
               style={{ color: theme.colors.textSecondary }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -57,15 +68,16 @@ export function HeroSection() {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            className="lg:col-span-5"
+            initial={{ opacity: 0, scale: 0.92, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
             <GlassCard className="p-8">
               <div className="space-y-6">
                 <div>
                   <h3
-                    className="text-sm font-medium uppercase tracking-wider mb-4"
+                    className="text-xs font-bold uppercase tracking-[0.15em] mb-4"
                     style={{ color: theme.colors.textMuted }}
                   >
                     Tech Stack
@@ -74,14 +86,15 @@ export function HeroSection() {
                     {SKILLS.map((skill, i) => (
                       <motion.span
                         key={skill}
-                        className="text-sm px-3 py-1.5 rounded-lg"
+                        className="text-xs font-medium px-3 py-2 rounded-xl border"
                         style={{
-                          backgroundColor: `${theme.colors.surfaceHover}`,
+                          backgroundColor: theme.colors.surfaceHover,
                           color: theme.colors.text,
+                          borderColor: theme.colors.border,
                         }}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 1 + i * 0.05 }}
+                        initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        transition={{ delay: 1 + i * 0.05, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                       >
                         {skill}
                       </motion.span>
@@ -96,13 +109,13 @@ export function HeroSection() {
                   <div className="grid grid-cols-3 gap-4 text-center">
                     <div>
                       <div
-                        className="text-2xl font-bold"
+                        className="text-3xl font-extrabold"
                         style={{ color: theme.colors.primary }}
                       >
                         5+
                       </div>
                       <div
-                        className="text-xs mt-1"
+                        className="text-[0.7rem] mt-1 font-medium uppercase tracking-wider"
                         style={{ color: theme.colors.textMuted }}
                       >
                         Years Experience
@@ -110,13 +123,13 @@ export function HeroSection() {
                     </div>
                     <div>
                       <div
-                        className="text-2xl font-bold"
+                        className="text-3xl font-extrabold"
                         style={{ color: theme.colors.primary }}
                       >
                         50+
                       </div>
                       <div
-                        className="text-xs mt-1"
+                        className="text-[0.7rem] mt-1 font-medium uppercase tracking-wider"
                         style={{ color: theme.colors.textMuted }}
                       >
                         Projects Delivered
@@ -124,13 +137,13 @@ export function HeroSection() {
                     </div>
                     <div>
                       <div
-                        className="text-2xl font-bold"
+                        className="text-3xl font-extrabold"
                         style={{ color: theme.colors.primary }}
                       >
                         30+
                       </div>
                       <div
-                        className="text-xs mt-1"
+                        className="text-[0.7rem] mt-1 font-medium uppercase tracking-wider"
                         style={{ color: theme.colors.textMuted }}
                       >
                         Happy Clients
@@ -144,7 +157,7 @@ export function HeroSection() {
         </div>
 
         <motion.nav
-          className="fixed bottom-8 left-1/2 -translate-x-1/2"
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.2 }}
@@ -155,16 +168,18 @@ export function HeroSection() {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className="px-4 py-2 text-sm rounded-lg transition-colors duration-200"
+                  className="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200"
                   style={{
                     color: theme.colors.textSecondary,
                   }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.color = theme.colors.primary)
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = theme.colors.textSecondary)
-                  }
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = theme.colors.primary;
+                    e.currentTarget.style.backgroundColor = theme.colors.surfaceHover;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = theme.colors.textSecondary;
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }}
                 >
                   {item.label}
                 </Link>

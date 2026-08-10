@@ -18,8 +18,8 @@ export function MagneticButton({
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 150, damping: 15 });
-  const springY = useSpring(y, { stiffness: 150, damping: 15 });
+  const springX = useSpring(x, { stiffness: 120, damping: 12 });
+  const springY = useSpring(y, { stiffness: 120, damping: 12 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const element = ref.current;
@@ -29,8 +29,8 @@ export function MagneticButton({
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
 
-    const deltaX = (e.clientX - centerX) * 0.3;
-    const deltaY = (e.clientY - centerY) * 0.3;
+    const deltaX = (e.clientX - centerX) * 0.25;
+    const deltaY = (e.clientY - centerY) * 0.25;
 
     x.set(deltaX);
     y.set(deltaY);
@@ -41,20 +41,68 @@ export function MagneticButton({
     y.set(0);
   };
 
-  const variantStyles = {
+  const baseButton =
+    'relative inline-flex items-center justify-center px-8 py-3.5 rounded-2xl font-semibold transition-all duration-200 overflow-hidden';
+
+  const variantClasses: Record<string, string> = {
     primary: `
-      bg-[${theme.colors.primary}] text-white
-      hover:bg-[${theme.colors.primaryHover}]
-      shadow-[${theme.shadows.glow}]
+      ${baseButton}
+      text-white
+      border border-transparent
+      shadow-lg
+      hover:shadow-xl
+      active:scale-[0.97]
     `,
     secondary: `
-      bg-transparent border-2 border-[${theme.colors.primary}] text-[${theme.colors.primary}]
-      hover:bg-[${theme.colors.primary}] hover:text-white
+      ${baseButton}
+      bg-transparent
+      border-2
+      hover:bg-white/5
+      active:scale-[0.97]
     `,
     ghost: `
-      bg-transparent text-[${theme.colors.textSecondary}]
-      hover:text-[${theme.colors.text}]
+      ${baseButton}
+      bg-transparent
+      border border-transparent
+      hover:bg-white/5
+      active:scale-[0.97]
     `,
+  };
+
+  const getVariantStyle = (): React.CSSProperties => {
+    switch (variant) {
+      case 'primary':
+        return {
+          backgroundColor: theme.colors.primary,
+          borderColor: theme.colors.primary,
+          color: '#fff',
+          boxShadow: `0 0 24px ${theme.colors.primary}40`,
+        };
+      case 'secondary':
+        return {
+          backgroundColor: 'transparent',
+          borderColor: theme.colors.primary,
+          color: theme.colors.primary,
+        };
+      case 'ghost':
+        return {
+          backgroundColor: 'transparent',
+          color: theme.colors.textSecondary,
+        };
+      default:
+        return {};
+    }
+  };
+
+  const getHoverStyle = (): React.CSSProperties => {
+    switch (variant) {
+      case 'primary':
+        return { backgroundColor: theme.colors.primaryHover };
+      case 'secondary':
+        return { backgroundColor: `${theme.colors.primary}15` };
+      default:
+        return {};
+    }
   };
 
   return (
@@ -64,15 +112,18 @@ export function MagneticButton({
       style={{ x: springX, y: springY }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      whileTap={{ scale: 0.95 }}
+      whileTap={{ scale: 0.96 }}
     >
       <button
         onClick={onClick}
-        className={`
-          px-8 py-3 rounded-xl font-medium
-          transition-colors duration-200
-          ${variantStyles[variant]}
-        `.trim().replace(/\s+/g, ' ')}
+        className={variantClasses[variant]}
+        style={getVariantStyle()}
+        onMouseEnter={(e) => {
+          Object.assign(e.currentTarget.style, getHoverStyle());
+        }}
+        onMouseLeave={(e) => {
+          Object.assign(e.currentTarget.style, getVariantStyle());
+        }}
       >
         {children}
       </button>

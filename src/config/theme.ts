@@ -1,8 +1,8 @@
 export const theme = {
   colors: {
-    background: '#0b0b10',
-    surface: '#12121a',
-    surfaceHover: '#1a1a25',
+    background: '#07070a',
+    surface: '#0e0e14',
+    surfaceHover: '#16161f',
     primary: '#6366f1',
     primaryHover: '#818cf8',
     accent: '#f59e0b',
@@ -10,9 +10,9 @@ export const theme = {
     text: '#f3f4f6',
     textSecondary: '#d1d5db',
     textMuted: '#9ca3af',
-    border: '#2a2f3a',
-    glass: 'rgba(18, 18, 26, 0.85)',
-    glassBorder: 'rgba(255, 255, 255, 0.15)',
+    border: '#23252f',
+    glass: 'rgba(14, 14, 20, 0.72)',
+    glassBorder: 'rgba(255, 255, 255, 0.08)',
   },
   typography: {
     fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",

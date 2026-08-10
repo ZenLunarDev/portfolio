@@ -16,18 +16,28 @@ export default function Projects() {
           className="mb-16"
         >
           <h1
-            className="text-5xl lg:text-6xl font-bold mb-4"
+            className="text-5xl lg:text-7xl font-extrabold mb-5 tracking-tight"
             style={{ color: theme.colors.text }}
           >
             Selected Work
           </h1>
           <p
-            className="text-lg max-w-2xl"
+            className="text-lg max-w-2xl leading-relaxed"
             style={{ color: theme.colors.textSecondary }}
           >
             A curated selection of projects that showcase my approach to solving
             complex problems with elegant, performant solutions.
           </p>
+          <motion.div
+            className="mt-6 h-1 rounded-full"
+            style={{
+              background: `linear-gradient(90deg, ${theme.colors.primary}, ${theme.colors.accent})`,
+              width: '120px',
+            }}
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          />
         </motion.div>
 
         {isLoading ? (
@@ -35,7 +45,7 @@ export default function Projects() {
             {[1, 2, 3, 4].map((i) => (
               <div
                 key={i}
-                className="h-64 rounded-2xl animate-pulse"
+                className="h-64 rounded-3xl animate-pulse"
                 style={{
                   backgroundColor: theme.colors.surface,
                   border: `1px solid ${theme.colors.border}`,

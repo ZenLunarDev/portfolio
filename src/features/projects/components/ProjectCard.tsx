@@ -13,34 +13,37 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     <GlassCard
       hover
       glow
-      className="group p-6"
-    >s
+      className="group p-8"
+      onClick={() => {}}
+    >
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-50px' }}
+        viewport={{ once: true, margin: '-60px' }}
         transition={{
-          duration: 0.6,
-          delay: index * 0.1,
+          duration: 0.7,
+          delay: index * 0.12,
           ease: [0.16, 1, 0.3, 1],
         }}
       >
-        <div className="flex items-start justify-between mb-4">
+        <div className="flex items-start justify-between mb-5">
           <span
-            className="text-xs font-medium px-3 py-1 rounded-full"
+            className="text-xs font-bold px-3 py-1.5 rounded-full border"
             style={{
-              backgroundColor: `${theme.colors.primary}20`,
+              backgroundColor: theme.colors.surfaceHover,
               color: theme.colors.primary,
+              borderColor: theme.colors.border,
             }}
           >
             {project.year}
           </span>
           {project.featured && (
             <span
-              className="text-xs font-medium px-3 py-1 rounded-full"
+              className="text-xs font-bold px-3 py-1.5 rounded-full border"
               style={{
-                backgroundColor: `${theme.colors.accent}20`,
+                backgroundColor: theme.colors.surfaceHover,
                 color: theme.colors.accent,
+                borderColor: theme.colors.border,
               }}
             >
               Featured
@@ -49,14 +52,14 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
 
         <h3
-          className="text-xl font-bold mb-3 transition-colors duration-200"
+          className="text-2xl font-extrabold mb-3 transition-colors duration-200 tracking-tight"
           style={{ color: theme.colors.text }}
         >
           {project.title}
         </h3>
 
         <p
-          className="text-sm leading-relaxed mb-4"
+          className="text-sm leading-relaxed mb-5"
           style={{ color: theme.colors.textSecondary }}
         >
           {project.description}
@@ -66,10 +69,11 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           {project.tech.map((tech) => (
             <span
               key={tech}
-              className="text-xs px-2 py-1 rounded-md"
+              className="text-xs font-medium px-2.5 py-1.5 rounded-lg"
               style={{
-                backgroundColor: `${theme.colors.surfaceHover}`,
+                backgroundColor: theme.colors.surface,
                 color: theme.colors.textMuted,
+                border: `1px solid ${theme.colors.border}`,
               }}
             >
               {tech}
@@ -78,10 +82,14 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
 
         <motion.div
-          className="mt-4 h-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          className="mt-6 h-[3px] rounded-full"
           style={{
             background: `linear-gradient(90deg, ${theme.colors.primary}, ${theme.colors.accent})`,
           }}
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: index * 0.12 + 0.2 }}
         />
       </motion.div>
     </GlassCard>

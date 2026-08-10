@@ -21,7 +21,7 @@ export function ContactSection() {
       id="contact"
       className="min-h-screen flex items-center justify-center px-6 py-20"
     >
-      <div className="max-w-2xl w-full">
+      <div className="max-w-3xl w-full">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -29,24 +29,24 @@ export function ContactSection() {
           transition={{ duration: 0.6 }}
         >
           <h2
-            className="text-4xl lg:text-5xl font-bold mb-4"
+            className="text-4xl lg:text-6xl font-extrabold mb-4 tracking-tight"
             style={{ color: theme.colors.text }}
           >
             Let's work together
           </h2>
           <p
-            className="text-lg mb-12"
+            className="text-lg mb-10 max-w-xl leading-relaxed"
             style={{ color: theme.colors.textSecondary }}
           >
             Have a project in mind? I'd love to hear about it. Send me a message
             and let's create something amazing.
           </p>
 
-          <GlassCard className="p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <GlassCard className="p-8 lg:p-10">
+            <form onSubmit={handleSubmit} className="space-y-7">
               <div>
                 <label
-                  className="block text-sm font-medium mb-2"
+                  className="block text-xs font-bold uppercase tracking-[0.12em] mb-2.5"
                   style={{ color: theme.colors.text }}
                 >
                   Name
@@ -57,7 +57,7 @@ export function ContactSection() {
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-xl outline-none transition-all duration-200"
+                  className="w-full px-5 py-3.5 rounded-2xl outline-none transition-all duration-200 text-sm"
                   style={{
                     backgroundColor: theme.colors.surface,
                     color: theme.colors.text,
@@ -75,7 +75,7 @@ export function ContactSection() {
 
               <div>
                 <label
-                  className="block text-sm font-medium mb-2"
+                  className="block text-xs font-bold uppercase tracking-[0.12em] mb-2.5"
                   style={{ color: theme.colors.text }}
                 >
                   Email
@@ -86,7 +86,7 @@ export function ContactSection() {
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-xl outline-none transition-all duration-200"
+                  className="w-full px-5 py-3.5 rounded-2xl outline-none transition-all duration-200 text-sm"
                   style={{
                     backgroundColor: theme.colors.surface,
                     color: theme.colors.text,
@@ -104,7 +104,7 @@ export function ContactSection() {
 
               <div>
                 <label
-                  className="block text-sm font-medium mb-2"
+                  className="block text-xs font-bold uppercase tracking-[0.12em] mb-2.5"
                   style={{ color: theme.colors.text }}
                 >
                   Message
@@ -115,7 +115,7 @@ export function ContactSection() {
                     setFormData({ ...formData, message: e.target.value })
                   }
                   rows={6}
-                  className="w-full px-4 py-3 rounded-xl outline-none transition-all duration-200 resize-none"
+                  className="w-full px-5 py-3.5 rounded-2xl outline-none transition-all duration-200 resize-none text-sm"
                   style={{
                     backgroundColor: theme.colors.surface,
                     color: theme.colors.text,
