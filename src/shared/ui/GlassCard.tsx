@@ -36,13 +36,31 @@ export function GlassCard({
           : `0 8px 24px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.03)`,
         transform: hover ? 'translateY(-4px)' : 'translateY(0)',
       }}
+      onMouseEnter={(e) => {
+        if (hover) {
+          e.currentTarget.style.transform = 'translateY(-4px)';
+          e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.05)';
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (hover) {
+          e.currentTarget.style.transform = 'translateY(0)';
+          e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.03)';
+        }
+      }}
       onClick={onClick}
     >
       {glow && (
         <div
-          className="absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500"
+          className="absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 pointer-events-none"
           style={{
             background: `linear-gradient(135deg, ${theme.colors.primary}10, ${theme.colors.accent}10)`,
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.opacity = '1';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.opacity = '0';
           }}
         />
       )}

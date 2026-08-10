@@ -7,7 +7,7 @@
   font-weight: 400;
   color-scheme: dark;
   color: #f3f4f6;
-  background-color: #0a0a0f;
+  background-color: #07070a;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -26,7 +26,11 @@ html {
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  background: radial-gradient(ellipse at top, #131320 0%, #0b0b10 50%, #08080c 100%);
+  background:
+    radial-gradient(ellipse 80% 50% at 20% -20%, rgba(99, 102, 241, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(245, 158, 11, 0.06), transparent),
+    #07070a;
+  background-attachment: fixed;
 }
 
 #root {
@@ -55,19 +59,41 @@ textarea {
   color: #f3f4f6;
 }
 
+input::placeholder,
+textarea::placeholder {
+  color: #6b7280;
+  opacity: 1;
+}
+
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0f;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #374151;
-  border-radius: 4px;
+  background: #23252f;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4b5563;
+  background: #374151;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
