@@ -1,6 +1,6 @@
 export const theme = {
   colors: {
-    background: '#0a0a0f',
+    background: '#0b0b10',
     surface: '#12121a',
     surfaceHover: '#1a1a25',
     primary: '#6366f1',
@@ -8,11 +8,11 @@ export const theme = {
     accent: '#f59e0b',
     accentHover: '#fbbf24',
     text: '#f3f4f6',
-    textSecondary: '#9ca3af',
-    textMuted: '#6b7280',
-    border: '#1f2937',
-    glass: 'rgba(18, 18, 26, 0.7)',
-    glassBorder: 'rgba(255, 255, 255, 0.08)',
+    textSecondary: '#d1d5db',
+    textMuted: '#9ca3af',
+    border: '#2a2f3a',
+    glass: 'rgba(18, 18, 26, 0.85)',
+    glassBorder: 'rgba(255, 255, 255, 0.15)',
   },
   typography: {
     fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
@@ -52,10 +52,10 @@ export const theme = {
     xl: '1.5rem',
   },
   shadows: {
-    glass: '0 8px 32px rgba(0, 0, 0, 0.4)',
-    glassHover: '0 12px 48px rgba(0, 0, 0, 0.6)',
-    glow: '0 0 20px rgba(99, 102, 241, 0.3)',
-    glowAccent: '0 0 20px rgba(245, 158, 11, 0.3)',
+    glass: '0 8px 32px rgba(0, 0, 0, 0.5)',
+    glassHover: '0 12px 48px rgba(0, 0, 0, 0.7)',
+    glow: '0 0 24px rgba(99, 102, 241, 0.4)',
+    glowAccent: '0 0 24px rgba(245, 158, 11, 0.4)',
   },
   motion: {
     duration: {

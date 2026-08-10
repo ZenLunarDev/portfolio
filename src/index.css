@@ -26,6 +26,7 @@ html {
 body {
   min-height: 100vh;
   overflow-x: hidden;
+  background: radial-gradient(ellipse at top, #131320 0%, #0b0b10 50%, #08080c 100%);
 }
 
 #root {
@@ -63,10 +64,10 @@ textarea {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1f2937;
+  background: #374151;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #374151;
+  background: #4b5563;
 }
