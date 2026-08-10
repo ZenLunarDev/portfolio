@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { MagneticButton } from '../../../shared/ui/MagneticButton.tsx';
 import { AnimatedText } from '../../../shared/ui/AnimatedText.tsx';
 import { GlassCard } from '../../../shared/ui/GlassCard.tsx';
@@ -151,9 +152,9 @@ export function HeroSection() {
           <GlassCard className="px-2 py-2">
             <div className="flex gap-1">
               {NAVIGATION.map((item) => (
-                <a
+                <Link
                   key={item.href}
-                  href={item.href}
+                  to={item.href}
                   className="px-4 py-2 text-sm rounded-lg transition-colors duration-200"
                   style={{
                     color: theme.colors.textSecondary,
@@ -166,7 +167,7 @@ export function HeroSection() {
                   }
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </div>
           </GlassCard>
