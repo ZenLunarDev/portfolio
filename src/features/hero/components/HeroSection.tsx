@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { MagneticButton } from '../../../shared/ui/MagneticButton.tsx';
 import { AnimatedText } from '../../../shared/ui/AnimatedText.tsx';
 import { GlassCard } from '../../../shared/ui/GlassCard.tsx';
@@ -7,6 +7,8 @@ import { theme } from '../../../config/theme.ts';
 import { NAVIGATION, SKILLS } from '../../../shared/lib/constants.ts';
 
 export function HeroSection() {
+  const location = useLocation();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
@@ -39,6 +41,17 @@ export function HeroSection() {
               className="text-5xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight"
               style={{ color: theme.colors.text }}
               delay={0.2}
+            />
+
+            <motion.div
+              className="h-[2px] rounded-full"
+              style={{
+                background: `linear-gradient(90deg, ${theme.colors.primary}, ${theme.colors.accent})`,
+                width: '80px',
+              }}
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
             />
 
             <motion.p
@@ -162,28 +175,35 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.2 }}
         >
-          <GlassCard className="px-2 py-2">
+          <GlassCard className="px-3 py-3">
             <div className="flex gap-1">
-              {NAVIGATION.map((item) => (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  className="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200"
-                  style={{
-                    color: theme.colors.textSecondary,
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = theme.colors.primary;
-                    e.currentTarget.style.backgroundColor = theme.colors.surfaceHover;
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = theme.colors.textSecondary;
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                  }}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {NAVIGATION.map((item) => {
+                const isActive = location.pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    className="relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200"
+                    style={{
+                      color: isActive ? theme.colors.primary : theme.colors.textSecondary,
+                      backgroundColor: isActive ? theme.colors.surfaceHover : 'transparent',
+                    }}
+                  >
+                    {isActive && (
+                      <motion.div
+                        className="absolute inset-0 rounded-xl"
+                        style={{
+                          backgroundColor: `${theme.colors.primary}15`,
+                          border: `1px solid ${theme.colors.primary}30`,
+                        }}
+                        layoutId="nav-active"
+                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{item.label}</span>
+                  </Link>
+                );
+              })}
             </div>
           </GlassCard>
         </motion.nav>
