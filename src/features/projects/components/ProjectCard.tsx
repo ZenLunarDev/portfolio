@@ -14,7 +14,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       hover
       glow
       className="group p-6"
-    >
+    >s
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
